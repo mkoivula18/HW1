@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HW1</string>
+    <string name="user1">adminUsername</string>
+    <string name="user123">adminPassword</string>
+</resources>
