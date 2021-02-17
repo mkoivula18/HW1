@@ -29,5 +29,10 @@ class MenuActivity : AppCompatActivity() {
 //            Toast.makeText(this, "Item selected" + names[i], Toast.LENGTH_LONG)
 //                .show()
 //        }
+
+        findViewById<Button>(R.id.newReminder).setOnClickListener {
+            startActivity(Intent(applicationContext, AddReminder::class.java))
+        }
+
     }
 }
