@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    val adminUsername = "yes"
+    val adminUsername = "mikko"
     val adminPassword = "123"
 
     override fun onCreate(savedInstanceState: Bundle?) {

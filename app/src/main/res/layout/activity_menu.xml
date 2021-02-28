@@ -7,26 +7,16 @@
     android:orientation="vertical"
     tools:context=".MenuActivity">
 
-    <ListView
-
-        android:id="@+id/listView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menurecycler"
         android:layout_width="match_parent"
-        android:layout_height="540dp"
-
-        tools:listitem="@layout/activity_menu_item" />
+        android:layout_height="620dp" />
 
     <Button
         android:id="@+id/newReminder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create new reminder"
-        app:backgroundTint="#4CAF50" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Remove reminder"
         app:backgroundTint="#4CAF50" />
 
     <Button
