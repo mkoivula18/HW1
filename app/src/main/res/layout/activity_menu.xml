@@ -10,7 +10,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menurecycler"
         android:layout_width="match_parent"
-        android:layout_height="620dp" />
+        android:layout_height="558dp" />
+
+    <Button
+        android:id="@+id/btnShowAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show all" />
 
     <Button
         android:id="@+id/newReminder"

@@ -2,6 +2,7 @@ package com.example.hw1
 
 import android.app.Dialog
 import android.content.Context
+import android.os.Build
 import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView

@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+    def work_version = "2.3.4"
+    implementation "androidx.work:work-runtime-ktx:$work_version"
     debugImplementation('im.dino:dbinspector:3.4.1@aar')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.30"
