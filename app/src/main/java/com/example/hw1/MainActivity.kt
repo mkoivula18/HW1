@@ -19,8 +19,8 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val adminUsername = ""
-    val adminPassword = ""
+    val adminUsername = "mikko"
+    val adminPassword = "123"
     private val notificationId = 101
     private val CHANNEL_ID = "channel_id_example_01"
 
@@ -49,9 +49,6 @@ class MainActivity : AppCompatActivity() {
             //if string in edittext matches with the password value.. let the user enter the activity.. else make a toast of wrong password..
         }
         createNotificationChannel()
-        findViewById<Button>(R.id.btnNotification).setOnClickListener{
-            sendNotification(this)
-        }
     }
     fun createNotificationChannel(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){

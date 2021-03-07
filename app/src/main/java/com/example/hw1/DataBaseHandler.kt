@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.AsyncTask
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
@@ -98,6 +99,8 @@ class DataBaseHandler(var context: Context) :
                 location_y = cursor.getString(cursor.getColumnIndex(COL_LOCATION_Y))
                 reminderseen = cursor.getString(cursor.getColumnIndex(COL_REMINDER_SEEN))
 
+                Log.d("remindertime", remindertime.toString())
+
                 val rem = Reminder(id, message, creation_time, remindertime, location_x, location_y, reminderseen)
                 reminderlist.add(rem)
             }while (cursor.moveToNext())
@@ -127,6 +130,73 @@ class DataBaseHandler(var context: Context) :
 
         db.close()
         return success
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun LoadReminderInfoEntries(): ArrayList<Reminder>{
+        val reminderlistseen: ArrayList<Reminder> = ArrayList<Reminder>()
+        val db = this.writableDatabase
+        var current = LocalDateTime.now()
+        val currentFormatted = current.format(DateTimeFormatter.ISO_DATE)
+
+        val reminderlist: ArrayList<Reminder> = ArrayList<Reminder>()
+        val selectQuery = "SELECT * FROM $TABLE_NAME"
+        var cursor: Cursor? = null
+
+        val dateparts = currentFormatted.split("-").toTypedArray()
+        val thisYear = dateparts[0].toInt()
+        val thisMonth = dateparts[1].toInt()
+        val thisDay = dateparts[2].toInt()
+        val newDate = SimpleDateFormat("dd-MM-yyyy").parse("$thisDay-$thisMonth-$thisYear")
+
+        val data = readdata()
+
+        var id: Int
+        var message: String
+        var creation_time: String
+        var remindertime: String
+        var location_x: String
+        var location_y: String
+        var reminderseen: String
+
+        try{
+            cursor = db.rawQuery(selectQuery, null)
+        }catch (e: SQLiteException){
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+        if (cursor.moveToFirst()){
+            do{
+                id = cursor.getInt(cursor.getColumnIndex(COL_ID))
+                message = cursor.getString(cursor.getColumnIndex(COL_DESCRIPTION))
+                creation_time = cursor.getString(cursor.getColumnIndex(COL_CREATIONTIME))
+                remindertime = cursor.getString(cursor.getColumnIndex(COL_REMINDERTIME))
+                location_x = cursor.getString(cursor.getColumnIndex(COL_LOCATION_X))
+                location_y = cursor.getString(cursor.getColumnIndex(COL_LOCATION_Y))
+                reminderseen = cursor.getString(cursor.getColumnIndex(COL_REMINDER_SEEN))
+
+                //Log.d("remindertime", remindertime.toString())
+                if (remindertime != "") {
+                    val reminderparts = remindertime.split("/").toTypedArray()
+                    val reminderDay = reminderparts[0]
+                    val reminderMonth = reminderparts[1]
+                    val reminderYear = reminderparts[2]
+
+                    val reminderDate = SimpleDateFormat("dd-MM-yyyy").parse("$reminderDay-$reminderMonth-$reminderYear")
+
+                    if (reminderDate.time < newDate.time){
+                        val rem = Reminder(id, message, creation_time, remindertime, location_x, location_y, reminderseen)
+                        reminderlistseen.add(rem)
+                    }
+                }
+
+                if (remindertime == "") {
+                    val rem = Reminder(id, message, creation_time, remindertime, location_x, location_y, reminderseen)
+                    reminderlistseen.add(rem)
+                }
+            }while (cursor.moveToNext())
+        }
+
+        return reminderlistseen
     }
 }
 

@@ -91,8 +91,10 @@ class AddReminder : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Tim
         cal.set(savedYear, savedMonth, savedDay, savedHour, savedMinute)
         savedMonth = savedMonth + 1
         remindertime = "$savedDay/$savedMonth/$savedYear/$savedHour/$savedMinute"
-
+        /*
         findViewById<TextView>(R.id.testinaytto).text =  "$savedDay/$savedMonth/$savedYear\n$savedHour : $savedMinute"
+
+         */
 
     }
     fun uploadToWorkManager(context: Context, id: Int, time: Int, message: String){

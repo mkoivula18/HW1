@@ -26,14 +26,16 @@ import java.time.format.DateTimeFormatter
 
 class MenuActivity : AppCompatActivity() {
 
+    var showAll = 0
 
-
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
+        showAll = 0
+
 
         var menurecycler = findViewById<RecyclerView>(R.id.menurecycler)
-
         menurecycler.layoutManager = LinearLayoutManager(this)
         val itemAdapter = ItemAdapter(this, getItemsList())
         menurecycler.adapter = itemAdapter
@@ -44,8 +46,20 @@ class MenuActivity : AppCompatActivity() {
         findViewById<Button>(R.id.newReminder).setOnClickListener {
             startActivity(Intent(applicationContext, AddReminder::class.java))
         }
+        findViewById<Button>(R.id.btnShowAll).setOnClickListener{
+            if (showAll == 0){
+                showAll = 1
+                setuplistofdata()
+                Toast.makeText(this, "Showing all reminders", Toast.LENGTH_SHORT).show()
+            }else{
+                showAll = 0
+                setuplistofdata()
+                Toast.makeText(this, "Showing current reminders", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setuplistofdata() {
         var menurecycler = findViewById<RecyclerView>(R.id.menurecycler)
         if (getItemsList().size > 0) {
@@ -58,39 +72,16 @@ class MenuActivity : AppCompatActivity() {
         }
 
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getItemsList(): ArrayList<Reminder> {
 
         val db: DataBaseHandler = DataBaseHandler(this)
-/*
-        var current = LocalDateTime.now()
-        val currentFormatted = current.format(DateTimeFormatter.ISO_DATE)
-        val dateparts = currentFormatted.split("-").toTypedArray()
-        val thisYear = dateparts[0].toInt()
-        val thisMonth = dateparts[1].toInt()
-        val thisDay = dateparts[2].toInt()
-        val newDate = SimpleDateFormat("dd-MM-yyyy").parse("$thisDay-$thisMonth-$thisYear")
-        Log.i("newdate: ", "Completed $newDate")
-        val data = db.readdata()
-        val newdata = data
 
-        for (item in newdata){
-            val itemDateparts = item.remindertime.split("/").toTypedArray()
-            val itemDay = itemDateparts[0].toInt()
-            val itemMonth = itemDateparts[1].toInt()
-            val itemYear = itemDateparts[2].toInt()
-            val itemHour = itemDateparts[3].toInt()
-            val itemMinute = itemDateparts[4].toInt()
-
-            val itemDate = SimpleDateFormat("dd-MM-yyyy").parse("$itemDay-$itemMonth-$itemYear")
-            Log.i("itemdate: ", "Completed $itemDate")
-            if (itemDate.time < newDate.time){
-                newdata += item
-            }
+        if (showAll == 1){
+            return db.readdata()
+        }else{
+            return db.LoadReminderInfoEntries()
         }
-
- */
-
-        return db.readdata()
     }
     fun informationDialog(reminder: Reminder) {
         val infoDialog = Dialog(this, R.style.Dialogi)
@@ -112,6 +103,7 @@ class MenuActivity : AppCompatActivity() {
         }
 
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     fun deleteReminder(reminder: Reminder) {
         val db: DataBaseHandler = DataBaseHandler(this)
         val status = db.deletedata(Reminder(reminder.creator_id, "", "", "", "", "", ""))
@@ -121,6 +113,7 @@ class MenuActivity : AppCompatActivity() {
         }
 
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     fun editReminderDialog(reminder: Reminder){
 
         val updateDialog = Dialog(this, R.style.Dialogi)
