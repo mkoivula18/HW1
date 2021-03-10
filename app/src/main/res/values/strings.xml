@@ -2,4 +2,6 @@
     <string name="app_name">HW1</string>
     <string name="user1">adminUsername</string>
     <string name="user123">adminPassword</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="firebase_db_url">https://mobimaps-36649-default-rtdb.firebaseio.com/</string>
 </resources>

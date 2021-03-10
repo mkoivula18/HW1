@@ -33,13 +33,16 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
         showAll = 0
-
+        findViewById<TextView>(R.id.infoBox).text = "Current Reminders"
 
         var menurecycler = findViewById<RecyclerView>(R.id.menurecycler)
         menurecycler.layoutManager = LinearLayoutManager(this)
         val itemAdapter = ItemAdapter(this, getItemsList())
         menurecycler.adapter = itemAdapter
 
+        findViewById<Button>(R.id.btnMaps).setOnClickListener{
+            startActivity(Intent(applicationContext, MapsActivity::class.java))
+        }
         findViewById<Button>(R.id.btnLogout).setOnClickListener() {
             startActivity(Intent(applicationContext, MainActivity::class.java))
         }
@@ -50,11 +53,11 @@ class MenuActivity : AppCompatActivity() {
             if (showAll == 0){
                 showAll = 1
                 setuplistofdata()
-                Toast.makeText(this, "Showing all reminders", Toast.LENGTH_SHORT).show()
+                findViewById<TextView>(R.id.infoBox).text = "All reminders"
             }else{
                 showAll = 0
                 setuplistofdata()
-                Toast.makeText(this, "Showing current reminders", Toast.LENGTH_SHORT).show()
+                findViewById<TextView>(R.id.infoBox).text = "Current Reminders"
             }
         }
     }

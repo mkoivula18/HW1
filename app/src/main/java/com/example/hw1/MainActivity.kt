@@ -19,14 +19,15 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val adminUsername = "mikko"
-    val adminPassword = "123"
+    val adminUsername = ""
+    val adminPassword = ""
     private val notificationId = 101
     private val CHANNEL_ID = "channel_id_example_01"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         findViewById<Button>(R.id.btnLogin).setOnClickListener {
 

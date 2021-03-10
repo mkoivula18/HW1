@@ -1,6 +1,13 @@
 package com.example.hw1
 
-class Reminder(val creator_id:Int, val message:String, val creationtime:String, val remindertime:String, val location_x:String, val location_y:String, val reminderseen:String)
+data class Reminder(
+    val creator_id:Int,
+    val message:String,
+    val creationtime:String,
+    val remindertime:String,
+    val location_x:String,
+    val location_y:String,
+    val reminderseen:String)
 
 
 /*

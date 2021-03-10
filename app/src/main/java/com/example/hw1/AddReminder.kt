@@ -62,7 +62,7 @@ class AddReminder : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Tim
         }
     }
 
-    private fun getDateTimeCalendar(){
+    fun getDateTimeCalendar(){
 
         day = cal.get(Calendar.DAY_OF_MONTH)
         month = cal.get(Calendar.MONTH)
@@ -71,7 +71,7 @@ class AddReminder : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Tim
         minute = cal.get(Calendar.MINUTE)
     }
 
-    private fun pickDate(){
+    fun pickDate(){
         findViewById<Button>(R.id.timePickerBtn).setOnClickListener{
             getDateTimeCalendar()
             DatePickerDialog(this, this, year, month, day).show()
@@ -111,7 +111,5 @@ class AddReminder : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Tim
         val workManager : WorkManager = WorkManager.getInstance(applicationContext)
         workManager.enqueue(reminderRequest)
         workManager.getWorkInfoByIdLiveData(reminderRequest.id).observe(this, androidx.lifecycle.Observer { Toast.makeText(this, it.state.name, Toast.LENGTH_SHORT).show() })
-
-
     }
 }

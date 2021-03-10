@@ -25,6 +25,7 @@ class ItemAdapter (val context: Context, val items: ArrayList<Reminder>) :
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int){
         val item = items.get(position)
 

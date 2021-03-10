@@ -23,7 +23,6 @@
         tools:layout_editor_absoluteY="-210dp" />
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="353dp"
         android:layout_height="520dp"
         android:background="@drawable/box"
@@ -103,6 +102,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainPassword"
         app:layout_constraintVertical_bias="0.199" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

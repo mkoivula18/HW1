@@ -136,12 +136,12 @@ class DataBaseHandler(var context: Context) :
         val reminderlistseen: ArrayList<Reminder> = ArrayList<Reminder>()
         val db = this.writableDatabase
         var current = LocalDateTime.now()
-        val currentFormatted = current.format(DateTimeFormatter.ISO_DATE)
+
 
         val reminderlist: ArrayList<Reminder> = ArrayList<Reminder>()
         val selectQuery = "SELECT * FROM $TABLE_NAME"
         var cursor: Cursor? = null
-
+        val currentFormatted = current.format(DateTimeFormatter.ISO_DATE)
         val dateparts = currentFormatted.split("-").toTypedArray()
         val thisYear = dateparts[0].toInt()
         val thisMonth = dateparts[1].toInt()

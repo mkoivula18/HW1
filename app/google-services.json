@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "657505393057",
-    "project_id": "reminder-app-6e65b",
-    "storage_bucket": "reminder-app-6e65b.appspot.com"
+    "project_number": "39608082932",
+    "firebase_url": "https://mobimaps-36649-default-rtdb.firebaseio.com",
+    "project_id": "mobimaps-36649",
+    "storage_bucket": "mobimaps-36649.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:657505393057:android:3897b3a32b2de44c5a13e0",
+        "mobilesdk_app_id": "1:39608082932:android:4834174cced7732004d9a1",
         "android_client_info": {
           "package_name": "com.example.hw1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "657505393057-3vrplnihu6a3hqpivl4ba4edq8fm3tck.apps.googleusercontent.com",
+          "client_id": "39608082932-g3d52ef68ogcg2h1fq0i1lhc6mditvuc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCJLMIcEkr1b6Bg-QMU7X3jl-whhzdQnFQ"
+          "current_key": "AIzaSyD6ILf7WwD3z8pnFknHUi_8Q3PSFrHzepU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "657505393057-3vrplnihu6a3hqpivl4ba4edq8fm3tck.apps.googleusercontent.com",
+              "client_id": "39608082932-g3d52ef68ogcg2h1fq0i1lhc6mditvuc.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
